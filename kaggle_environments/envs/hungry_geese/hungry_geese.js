@@ -26,7 +26,7 @@ function renderer({
 }) {
   // Configuration.
   const { rows, columns } = environment.configuration;
-
+    
   const colors = {
     orange: "#FFB345",
     red: "#FF2615",
@@ -263,7 +263,7 @@ function renderer({
   // First time setup
   if (!parent.querySelector("#buffer")) {
     if (interactive) {
-      const keyCodes = { 37: "W", 38: "N", 39: "E", 40: "S" };
+      const keyCodes = { 37: "WEST", 38: "NORTH", 39: "EAST", 40: "SOUTH" };
       document.addEventListener("keydown", (evt) => {
         if (
           !isInteractive() ||
@@ -331,6 +331,7 @@ function renderer({
   const [bufferCanvas] = getCanvas("buffer");
   const [canvas, c] = getCanvas("hungry_geese");
   c.fillStyle = "#000B2A";
+//   c.fillStyle = "#d8e0f2";
   c.fillRect(0, 0, canvas.width, canvas.height);
 
   // Render the board.
