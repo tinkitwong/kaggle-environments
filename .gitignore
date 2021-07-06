@@ -136,3 +136,5 @@ temp.*
 
 # Git merge artifacts
 *.orig
+
+.DS_Store
