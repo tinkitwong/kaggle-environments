@@ -159,6 +159,7 @@ class GreedyAgent:
 
         action = min(actions, key=actions.get) if any(actions) else choice([action for action in Action])
         self.last_action = action
+        # print('action returned by Greedy Agent', action)
         return action.name
 
 
@@ -207,12 +208,12 @@ def interpreter(state, env):
             continue
 
         action = Action[agent.action]
-
+        # env.debug_print(f"action by agent: {action}")
         # Check action direction
         last_agent = last_state[index]
         last_action = Action[last_agent["action"]] if "action" in last_agent else action
         if last_action == action.opposite():
-            env.debug_print(f"Opposite action: {agent.observation.index, action, last_action}")
+            # env.debug_print(f"Opposite action: {agent.observation.index, action, last_action}")
             agent.status = "DONE"
             geese[index] = []
             continue
@@ -228,7 +229,7 @@ def interpreter(state, env):
 
         # Self collision.
         if head in goose:
-            env.debug_print(f"Body Hit: {agent.observation.index, action, head, goose}")
+            # env.debug_print(f"Body Hit: {agent.observation.index, action, head, goose}")
             agent.status = "DONE"
             geese[index] = []
             continue
@@ -244,7 +245,7 @@ def interpreter(state, env):
             if len(goose) > 0:
                 goose.pop()
             if len(goose) == 0:
-                env.debug_print(f"Goose Starved: {action}")
+                # env.debug_print(f"Goose Starved: {action}")
                 agent.status = "DONE"
                 continue
 
@@ -260,7 +261,7 @@ def interpreter(state, env):
         if len(goose) > 0:
             head = geese[index][0]
             if goose_positions[head] > 1:
-                env.debug_print(f"Goose Collision: {agent.action}")
+                # env.debug_print(f"Goose Collision: {agent.action}")
                 agent.status = "DONE"
                 geese[index] = []
 
