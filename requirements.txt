@@ -4,4 +4,4 @@ ipython
 jsonschema
 numpy
 requests
-pytorch
+torch
